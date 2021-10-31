@@ -1,9 +1,8 @@
 {% extends "base.html" %}
-
 {% block sideNav %}
 <li><a href="/" method="GET">Home</a></li>
-<li class="active"><a href="/datas">Datas</a></li>
-<li><a href="/Brightness" method="GET">Brightness</a></li>
+<li><a href="/datas">Datas</a></li>
+<li class="active"><a href="#">Brightness</a></li>
 <canvas id="myChart" class="chart" width="1000" height="1000"></canvas>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 <style>
@@ -24,7 +23,7 @@
     data:{
         labels:y,
         datasets:[{
-            label:'Temperature',
+            label:'Brightness',
             data: x,
             backgroundColor:'black'
         }],
@@ -35,4 +34,57 @@
 </script>
 
 {{content}}
+
+<style>
+.container {
+  position: absolute;
+  top:90px;
+  left:300px;
+  width: 150px;
+}
+
+.hum .container
+{
+    position: absolute;
+    top:115px;
+    left:600px;
+    width: 150px;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #ffffff;
+}
+
+.container:hover .overlay {
+  opacity: 0.85;
+}
+
+.text {
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+</style>
+
 {% endblock %}

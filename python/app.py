@@ -67,6 +67,28 @@ def hum():
         time.append(data[2])
     return render_template("hum.html", values = values, time = time)
 
+@app.route("/Brightness")
+def bright():
+    mydb = mysql.connector.connect(
+        host="mysql",
+        user="root",
+        password="hyperpassword",
+        database="datas",
+        port=3306
+        )     
+    mycursor = mydb.cursor()
+    mycursor.execute("SELECT * FROM Brightness")
+    BrightTable = mycursor.fetchall()
+    reply = []
+    for dataItem in BrightTable:
+        reply.append(dataItem)
+    values = []
+    time = []
+    for data in reply:
+        values.append(float(data[1]))
+        time.append(data[2])
+    return render_template("brightness.html", values = values, time = time)
+
 @app.route("/sendData", methods=['POST'])
 def post():
     newData = request.get_json(silent=True)
