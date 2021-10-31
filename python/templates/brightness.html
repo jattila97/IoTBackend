@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block sideNav %}
 <li><a href="/" method="GET">Home</a></li>
-<li><a href="/datas">Datas</a></li>
+<li><a href="/datas">DHT datas</a></li>
 <li class="active"><a href="#">Brightness</a></li>
 <canvas id="myChart" class="chart" width="1000" height="1000"></canvas>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
@@ -11,6 +11,7 @@
     position: absolute;
     top:150px;
     left:300px;
+    width: 500px;
 }
 </style>
 <script>
@@ -32,6 +33,20 @@
     options:{layout:{position:{left:500}}}
     });
 </script>
+
+<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+
+
+    <form action="http://192.168.0.58:1880/a" target="dummyframe" method="post" style="position: absolute; top: 400px; left: 300px;">
+        <label for="P">P:</label>
+        <input type="text" id="P" name="P"><br><br>
+        <label for="I">I:</label>
+        <input type="text" id="I" name="I"><br><br>
+        <label for="D">D:</label>
+        <input type="text" id="D" name="D"><br><br>
+        <button>send</button>
+    </form>
+
 
 {{content}}
 
